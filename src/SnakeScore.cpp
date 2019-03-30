@@ -36,7 +36,6 @@ void Score::storeVector()
 	for(int i = 0; i < trueSize; i++)
 	{
 		file.write(reinterpret_cast<const char*>(&scoreArray[i].first), sizeof(scoreArray[i].first)); //Write Score to file
-		
 		tempSize = strlen(scoreArray[i].second.c_str());
 		file.write(reinterpret_cast<const char*>(&tempSize), sizeof(tempSize)); //Write STRLEN to file
 		file.write((const char*)scoreArray[i].second.c_str(), sizeof(const char) * tempSize);
