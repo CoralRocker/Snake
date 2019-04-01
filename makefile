@@ -1,6 +1,7 @@
 CXX= g++
 CXXFLAGS= -std=c++17 -Ofast
 CXXLIBS= -lncurses
+CDIR= src
 
-Snake: main.cpp menu.cpp SnakeScore.cpp
-	$(CXX) $(CXXFLAGS) main.cpp menu.cpp SnakeScore.cpp -o Snake $(CXXLIBS) 
+Snake: $(CDIR)/main.cpp $(CDIR)/menu.cpp $(CDIR)/SnakeScore.cpp
+	$(CXX) $(CXXFLAGS) $(CDIR)/main.cpp $(CDIR)/menu.cpp $(CDIR)/SnakeScore.cpp -o $(CDIR)/Snake $(CXXLIBS) 
