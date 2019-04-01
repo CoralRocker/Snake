@@ -152,7 +152,6 @@ void moveSnake(int *snake[2], int direction, int size, int height, int width, in
 }
 
 /* Places food */
-//TODO: calculate if intecepts with snake body
 void foodCalc(int f[][2], int h, int w, int row)
 {
 	/* Place food randomly */
