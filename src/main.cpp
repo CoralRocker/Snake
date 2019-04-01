@@ -279,7 +279,9 @@ int main(int argc, char** argv)
 	int input = -1, oldMove = KEY_DOWN;
 	char* strBuf = (char*)calloc(32, sizeof(char) * 32);
 	char* memBuf = (char*)calloc(64, sizeof(char) * 64);
-	
+	char* name = new char[32];
+	Score *board = new Score(5, "snake.bin");
+
 	/* Menu */
 	menu *Menu = new menu(stdscr);
 	Menu->setOpts(9, "EASY", "MEDIUM", "HARD", "GOD", "QUIT", "FOR MITHUL (RETARD MODE)", "TURN ON DEATH WALLS", "TURN OFF DEATH WALLS", "Scoreboard");
@@ -397,9 +399,7 @@ int main(int argc, char** argv)
 	getch();
 	
 	clear();
-	Score *board = new Score(5, "snake.bin");
 	board->loadVector();
-	char* name = new char[32];
 	if(board->rankScore(pts) > 0)
 	{
 		nodelay(stdscr, 0);
