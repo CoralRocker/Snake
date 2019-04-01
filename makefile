@@ -2,5 +2,5 @@ CXX= g++
 CXXFLAGS= -std=c++17 -Ofast
 CXXLIBS= -lncurses
 
-Snake: main.cpp menu.cpp SnakeScore.cpp
-	$(CXX) $(CXXFLAGS) main.cpp menu.cpp SnakeScore.cpp -o Snake $(CXXLIBS) 
+Snake: src/main.cpp src/menu.cpp src/SnakeScore.cpp
+	$(CXX) $(CXXFLAGS) src/main.cpp src/menu.cpp src/SnakeScore.cpp -o src/Snake $(CXXLIBS) 
