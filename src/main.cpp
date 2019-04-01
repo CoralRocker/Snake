@@ -305,8 +305,7 @@ int main(int argc, char** argv)
 			break;
 		case -1:
 		case 4:
-			endwin();
-			return 0;
+			goto ENDPROG;
 			break;
 		case 5:
 			timeout(5000);
@@ -427,13 +426,16 @@ int main(int argc, char** argv)
 	nodelay(stdscr, FALSE);
 	getch();
 	delete(board);
-
+	
 	//getch();
 
 	/* End Window */
 	endwin();
 	printf("%s\n", name);
 	delete(name);
+ENDPROG:
+	if(stdscr != NULL)
+		endwin();
 	free(strBuf);
 	free(memBuf);
 	free(snake[0]);
