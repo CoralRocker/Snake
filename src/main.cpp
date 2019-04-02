@@ -246,17 +246,20 @@ int msOffset(void)
 
 	long long end = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
 
+	free(tsnake[0]);
+	free(tsnake[1]);
 	printf("%ld\n", end-start);
 	//printf("Time elapsed for one Snake Increment: %ld\n", end-start);
 	//printf("Start: %ld\nEnd: %ld\n", start, end);
 	return -1;	
+
 }
 
 /* Runs the game */
 int main(int argc, char** argv)
 {
-	if(msOffset() != 0)
-		exit(-1);
+//	if(msOffset() != 0)
+//		exit(-1);
 
 	int GROWTH_HORMONE = 1;
 	int rows = 5;
@@ -349,20 +352,20 @@ int main(int argc, char** argv)
 			DEATH_WALLS = false;
 			goto MENURUN;
 		case 8:
-			Score *board = new Score(5, "snake.bin");
-			board->loadVector();
+			Score *b = new Score(5, "snake.bin");
+			b->loadVector();
 			clear();
 			for(int i = 1; i <=  5; i++)
 			{
-				std::string str = board->getPair(i).second;
+				std::string str = b->getPair(i).second;
 				str += ": ";
-				str += std::to_string(board->getPair(i).first);
+				str += std::to_string(b->getPair(i).first);
 				mvaddstr(hi/2 + i, wid/2 - str.length()/2, str.c_str());
 			}
 			nodelay(stdscr, FALSE);
 			getch();
 			nodelay(stdscr, TRUE);
-			delete(board);
+			delete(b);
 			goto MENURUN;
 
 	}	
