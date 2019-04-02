@@ -7,6 +7,7 @@
 #include <cstring>
 #include <signal.h>
 #include <string>
+#include <chrono>
 
 /* Global Vars */
 bool DEATH_WALLS = false;
@@ -224,9 +225,38 @@ void beerMeABorder(WINDOW *win, char symbol)
 	attroff(COLOR_PAIR(2));
 }
 
+/* Tests Speed */
+int msOffset(void)
+{
+	/* Initialize Tester */
+	int tsnakeSize = 3;
+	int *tsnake[2] = {
+		(int*)calloc(tsnakeSize, sizeof(int) * tsnakeSize),
+		(int*)calloc(tsnakeSize, sizeof(int) * tsnakeSize)
+	};
+	for(int i = 0; i < tsnakeSize; i++)
+	{
+		tsnake[0][i] = 10 + i;
+		tsnake[1][i] = 10;
+	}
+	
+	long long start = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
+
+	snakeIncrement(tsnake, &tsnakeSize);
+
+	long long end = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
+
+	printf("%ld\n", end-start);
+	//printf("Time elapsed for one Snake Increment: %ld\n", end-start);
+	//printf("Start: %ld\nEnd: %ld\n", start, end);
+	return -1;	
+}
+
 /* Runs the game */
 int main(int argc, char** argv)
 {
+	if(msOffset() != 0)
+		exit(-1);
 
 	int GROWTH_HORMONE = 1;
 	int rows = 5;
